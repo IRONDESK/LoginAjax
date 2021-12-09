@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax login 연습</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        * {
+            font-family: 'Pretendard';
+        }
+
+        .login-form {
+            display: block;
+            margin: 0 auto;
+            padding: 16px 0;
+            width: 500px;
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            height: 48px;
+        }
+
+        .login-form input {
+            display: block;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #ebebeb;
+            padding: 15px;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        .login-form button {
+            cursor: pointer;
+            display: block;
+            width: 70px;
+            height: 30px;
+            background-color: tomato;
+            color: #fff;
+            line-height: 30px;
+            font-weight: bold;
+            border: none;
+            border-radius: 15px;
+            box-sizing: border-box;
+        }
+
+        .login-form .errorMsg {
+            display: none;
+            margin: 5px 0;
+            width: 100%;
+            padding-left: 10px;
+            text-align: left;
+            font-size: 12px;
+            color: red;
+        }
+
+        .sayHello {
+            display: none;
+            margin: 0 auto;
+            width: 600px;
+            padding: 14px;
+            text-align: center;
+            border-radius: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 8px #999;
+        }
+
+        .sayHello .user-grade {
+            color: coral;
+            box-sizing: border-box;
+            padding: 5px;
+            border: 3px solid coral;
+            border-radius: 20px;
+            font-size: 88%;
+        }
+
+        .sayHello p {
+            font-size: 130%;
+        }
+
+        .sayHello .option {
+            margin-top: 26px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            font-size: 90%;
+            color: #555;
+        }
+
+        .sayHello .option a {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-form">
+        <input type="text" id="valueID" placeholder="아이디">
+        <input type="password" id="valuePW" placeholder="비밀번호">
+        <button type="submit" class="dataLoadButton">로그인</button>
+        <p class="errorMsg">아이디나 비밀번호가 일치하지 않습니다.</p>
+    </div>
+    <div class="sayHello"></div>
+
+    <script>
+        // let id = prompt('아이디를 입력해주세요.');
+        // let pw = prompt('패스워드를 입력해주세요.');
+        let loaddata;
+
+        $('.dataLoadButton').click(function () {
+            $.ajax({
+                url: 'https://raw.githubusercontent.com/IRONDESK/LoginTest/main/userdata.json',
+                async: true,
+                dataType: 'JSON',
+                success: function (result) {
+                    loaddata = result;
+                    const id = $('#valueID').val();
+                    const pw = $('#valuePW').val();
+
+                    const idfind = loaddata.find(el => (el.id === id) && (el.pw === pw));
+                    if (idfind !== undefined) {
+                        $('.sayHello').css("display", "block");
+                        $(".sayHello").html(`
+                        <h1>안녕하세요, ${idfind.name} 님!</h1>
+                        <p>회원님이 보유하신 멋사코인은 🪙<strong>${idfind.phone.split("-")[1]}억 원</strong>입니다.</p>
+                        <h2>회원님은 현재 <span class="user-grade">${idfind.grade}</span> 등급입니다.</h2>
+                        <div class="option">
+                            <a>로그아웃</a>
+                            <a id="withdraw">멋사코인 인출</a>
+                        </div>
+                        `);
+
+                        $('#withdraw').click(function () {
+                            prompt("입금 받을 계좌번호를 입력해주세요.");
+                            alert("입금 신청이 완료되었습니다. 입금까지 최대 3시간이 소요됩니다.")
+                        })
+                    } else if (idfind === undefined) {
+                        $('.errorMsg').css("display", "inline-block").fadeOut(1100);
+                    }
+
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>
