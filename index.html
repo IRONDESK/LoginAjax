@@ -158,7 +158,15 @@
                             }
                         })
 
-
+                        /// 로그아웃 버튼
+                        $('#withdraw').click(function () {
+                            let accountNum = prompt("입금 받을 계좌번호를 입력해주세요.");
+                            if (accountNum !== null && accountNum !== "") {
+                                alert("입금 신청이 완료되었습니다. 입금까지 최대 3시간이 소요됩니다.")
+                            } else {
+                                alert("계좌번호가 입력되지 않았거나 취소되었습니다.")
+                            }
+                        })
                     } else if (idfind === undefined) {
                         /// 로그인 실패시
                         $('.errorMsg').css("display", "inline-block").fadeOut(1100);
