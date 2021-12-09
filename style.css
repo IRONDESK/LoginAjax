@@ -1,0 +1,90 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* {
+    font-family: 'Pretendard';
+}
+
+.login-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 16px 0;
+    width: 500px;
+    background: none;
+    border: none;
+    justify-content: space-around;
+    height: 48px;
+}
+
+.login-form input {
+    display: block;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #ebebeb;
+    padding: 15px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    cursor: pointer;
+    display: block;
+    width: 70px;
+    height: 30px;
+    background-color: tomato;
+    color: #fff;
+    line-height: 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.login-form .errorMsg {
+    display: none;
+    margin: 5px 0;
+    width: 100%;
+    padding-left: 10px;
+    text-align: left;
+    font-size: 12px;
+    color: red;
+}
+
+.sayHello {
+    display: none;
+    margin: 0 auto;
+    width: 600px;
+    padding: 14px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 8px #999;
+}
+
+.sayHello .user-grade {
+    color: coral;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 3px solid coral;
+    border-radius: 20px;
+    font-size: 88%;
+}
+
+.sayHello p {
+    font-size: 130%;
+}
+
+.sayHello .option {
+    margin-top: 26px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 90%;
+    color: #555;
+}
+
+.sayHello .option a {
+    cursor: pointer;
+}
