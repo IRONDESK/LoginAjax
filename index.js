@@ -30,7 +30,7 @@ $('.dataLoadButton').click(function () {
                 </div>
                 `);
 
-                /// 멋사코인 인출
+                /// 로그아웃 버튼
                 $('#logout').click(function () {
                     let logoutQuestion = confirm("로그아웃 하시겠습니까?");
                     if (logoutQuestion) {
@@ -44,7 +44,7 @@ $('.dataLoadButton').click(function () {
                     }
                 })
 
-                /// 로그아웃 버튼
+                /// 멋사코인 인출
                 $('#withdraw').click(function () {
                     let accountNum = prompt("입금 받을 계좌번호를 입력해주세요.");
                     if (accountNum !== null && accountNum !== "") {
